@@ -25,11 +25,16 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-    <!-- starter para manipulação de dados
+    <!-- starter para manipulação de dados-->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>-->
+    </dependency>
+<!-- BAnco de dados em Memório-->
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+    </dependency>
     <!-- starter Para segurança
     <dependency>
         <groupId>org.springframework.boot</groupId>
