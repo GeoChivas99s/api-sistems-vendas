@@ -31,7 +31,7 @@ public class Main {
 
            System.out.println("--------+----------------");
 
-
+           clients.deletar(c2);
            clients.obterTodos().forEach(e-> System.out.println(e.getNome()));
 
 

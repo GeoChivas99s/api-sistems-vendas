@@ -34,6 +34,9 @@ public class Clients {
 
     @Transactional
     public void deletar(Cliente cliente){
+        if(!entityManager.contains(cliente)){
+           cliente = entityManager.merge(cliente);
+        }
         entityManager.remove(cliente);
     }
 
