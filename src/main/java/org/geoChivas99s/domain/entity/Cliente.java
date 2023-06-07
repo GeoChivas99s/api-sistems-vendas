@@ -1,6 +1,7 @@
 package org.geoChivas99s.domain.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="cliente")
@@ -11,6 +12,16 @@ public class Cliente {
     private Integer id;
     @Column(name="nome", length = 100)
     private String nome;
+    @OneToMany(mappedBy = "cliente")
+    private Set<Cliente> pedidos;
+    public Set<Cliente> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(Set<Cliente> pedidos) {
+        this.pedidos = pedidos;
+    }
+
 
     public Cliente(){
 

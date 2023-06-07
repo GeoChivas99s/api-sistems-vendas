@@ -24,16 +24,16 @@ public class Main {
            Cliente c1 = new Cliente("Lindo Mesmo");
            Cliente c2 = new Cliente("Marco Pitra");
 
-          clients.salvar(c1);
-          clients.salvar(c2);
+          clients.save(c1);
+          clients.save(c2);
 
 
 
            System.out.println("--------+----------------");
 
-           clients.deletar(c2);
-           clients.obterTodos().forEach(e-> System.out.println(e.getNome()));
-
+           clients.delete(c2);
+           clients.findAll().forEach(e-> System.out.println(e.getNome()));
+          clients.findByNomeLike("");
 
 
        };
