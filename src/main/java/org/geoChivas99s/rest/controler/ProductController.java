@@ -48,19 +48,27 @@ public class ProductController {
         return products.findAll(example);
     }
 
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteClient(@PathVariable Integer id){
-        Optional<Produto> produto =  products.findById(id);
-        if(produto.isPresent()){
-            products.delete(produto.get());
-            return  ResponseEntity.noContent().build();
-
-        }
-        return ResponseEntity.notFound().build();
+    @PutMapping("/{id}")
+    public  void update(@PathVariable Integer id ,   @RequestBody Produto produto){
+        products.findById(id)
+                .map(cl -> {
+                    produto.setId(cl.getId());
+                    products.save(produto);
+                    return  cl;
+                }).orElseThrow( () -> new ResponseStatusException
+                        (HttpStatus.NOT_FOUND, "Cliente não encontrado!"));
     }
 
-}
+
+    @DeleteMapping("/{id}")
+    public void deleteClient(@PathVariable Integer id) {
+        products.findById(id).map(produto -> {
+            products.delete(produto);
+            return Void.TYPE;
+        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado"));
+
+    }
+    }
 
 
 
