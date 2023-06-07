@@ -12,6 +12,9 @@ public class Cliente {
     private Integer id;
     @Column(name="nome", length = 100)
     private String nome;
+
+    @Column(name = "cpf" , length = 11)
+    private String cpf;
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private Set<Pedido> pedidos;
     public Set<Pedido> getPedidos() {
@@ -30,6 +33,20 @@ public class Cliente {
 setNome(nome);
 setId(id);
     }
+    public Cliente(String nome , Integer id , String cpf){
+        setNome(nome);
+        setId(id);
+        setCpf(cpf);
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public Cliente(String nome ){
         setNome(nome);
 
