@@ -16,7 +16,7 @@ import java.util.List;
 public interface Clients  extends JpaRepository<Cliente, Integer> {
 
      List<Cliente> findByNomeLike (String nome);
-@Query(" select c from Cliente c left join fetch c.pedidos where c.id = :id")
+@Query(" select c from Cliente c left join fetch c.pedidos where c.id = :id ")
      Cliente findClienteFetch (Integer id);
 
 
