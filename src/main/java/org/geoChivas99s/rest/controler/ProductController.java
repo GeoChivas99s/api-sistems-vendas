@@ -61,6 +61,7 @@ public class ProductController {
 
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteClient(@PathVariable Integer id) {
         products.findById(id).map(produto -> {
             products.delete(produto);
