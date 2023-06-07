@@ -12,13 +12,13 @@ public class Cliente {
     private Integer id;
     @Column(name="nome", length = 100)
     private String nome;
-    @OneToMany(mappedBy = "cliente")
-    private Set<Cliente> pedidos;
-    public Set<Cliente> getPedidos() {
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    private Set<Pedido> pedidos;
+    public Set<Pedido> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(Set<Cliente> pedidos) {
+    public void setPedidos(Set<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
 
@@ -49,5 +49,13 @@ setId(id);
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
     }
 }
