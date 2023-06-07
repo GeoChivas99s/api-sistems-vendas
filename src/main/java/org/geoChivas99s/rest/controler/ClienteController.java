@@ -18,10 +18,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "/api/clientes")
 public class ClienteController {
-  //  @RequestMapping(value = "/hello/{nome}", method = RequestMethod.GET
-   // consumes = {"application/json" , "application/xml"} ,// Tipo que posso receber
-   // produces = {"application/json" , "application/xml"} // o valor que ele vai enviar
-    //)
 
     private Clients clientes;
 
@@ -79,7 +75,7 @@ public class ClienteController {
     @GetMapping
     public List<Cliente>  find(Cliente query){
     ExampleMatcher matcher = ExampleMatcher
-             .matching()
+            .matching()
             .withIgnoreCase()
             .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
     Example example = Example.of(query, matcher);
