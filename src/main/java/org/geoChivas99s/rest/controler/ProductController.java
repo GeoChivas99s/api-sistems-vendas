@@ -21,9 +21,10 @@ public class ProductController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createProduct(@RequestBody Produto produto){
-        products.save(produto);.
-
+        products.save(produto);
     }
+
+
     @GetMapping
     public List<Produto> getAll(Produto query){
         ExampleMatcher matcher = ExampleMatcher
