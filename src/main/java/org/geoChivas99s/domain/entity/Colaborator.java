@@ -23,7 +23,7 @@ public class Colaborator {
     private Long Salario;
 
     @OneToOne
-    @JoinColumn(name = "cargo_id")
+    @JoinColumn(name = "cargo_id" , referencedColumnName = "cargo_id")
     private Cargo cargo;
 
 }
