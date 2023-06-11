@@ -5,26 +5,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
-public class ItemPedido {
+@Table(name="colaboradores")
+public class Colaborator {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    private UUID id;
+    @Column(name = "nome")
+    private String nome;
+    @Column(name = "salario")
+    private Long Salario;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
-    @ManyToOne
-    @JoinColumn(name = "produto_id")
-    private Produto produto;
-    @Column(name = "quantidade")
-    private Integer quantidade;
-
-
+    @OneToOne
+    @JoinColumn(name = "cargo_id")
+    private Cargo cargo;
 
 }

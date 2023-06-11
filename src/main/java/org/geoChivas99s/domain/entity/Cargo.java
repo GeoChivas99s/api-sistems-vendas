@@ -5,20 +5,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "produto")
-public class Produto {
+@Table(name="cargo")
+public class Cargo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "descricao")
-    private String descricao;
-    @Column(name = "preco_unitario")
-    private BigDecimal preco;
+    @Column(name = "cargo_id")
+    private UUID cargo_id;
+
+    @Column(name = "nome")
+    private String nome;
+
+    public Cargo(String nome){
+        this.setNome(nome);
+    }
 
 }
