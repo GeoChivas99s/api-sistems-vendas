@@ -1,12 +1,12 @@
 package org.geoChivas99s;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.geoChivas99s.domain.entity.Users;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.security.core.userdetails.User;
+
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -37,7 +37,31 @@ public class JwtService {
 
     }
 
+    public Claims getClaims(String token) throws ExpiredJwtException {
+        return Jwts.parser()
+                .setSigningKey(assignKey)
+                .parseClaimsJwt(token)
+                .getBody();
+    }
 
+    private boolean isValidToken(String token){
+        try {
+Claims claims = getClaims(token);
+Date expiration = claims.getExpiration();
+LocalDateTime localDateTime = expiration.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+return !LocalDateTime.now().isAfter(localDateTime);
+        }catch (Exception e){
+            return false;
+
+        }
+    }
+
+    public String SignIn(String token) throws ExpiredJwtException{
+
+        return (String)
+                getClaims(token).getSubject();
+    }
+/*
     public static void main(String[] args) {
 
         ConfigurableApplicationContext context = SpringApplication.run(Main.class);
@@ -45,8 +69,11 @@ public class JwtService {
         JwtService service = context.getBean(JwtService.class);
 
         Users user = Users.builder().login("fulano").build();
-        System.out.println("Token"+ service.generateToken(user));
+        String token = service.generateToken(user);
+        System.out.println("Token"+ token);
 
+        boolean isTokenValid = service.isValidToken(token);
+        System.out.println(isTokenValid);
     }
-
+*/
 }

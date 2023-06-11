@@ -31,7 +31,6 @@ public class UserServiceImp implements UserDetailsService {
                 .roles(roles).build();
     }
 
-
     @Transactional
     public Users saveUser(Users user){
    return   userRepository.save(user);
@@ -40,5 +39,19 @@ public class UserServiceImp implements UserDetailsService {
     public Iterable<Users> getAll(){
         return userRepository.findAll();
     }
+
+    public  UserDetails autenticate(Users user){
+
+        UserDetails existentUser = loadUserByUsername(user.getLogin());
+      boolean isTheSamePassword = passwordEncoder.matches(user.getSenha(), existentUser.getPassword());
+        if(isTheSamePassword){
+
+            return existentUser;
+        }
+        throw new RuntimeException("Senha ou login inválido");
+
+
+    }
+
 
 }
