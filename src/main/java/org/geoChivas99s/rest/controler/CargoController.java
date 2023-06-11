@@ -9,6 +9,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -43,6 +44,22 @@ public class CargoController {
     public Iterable<Cargo> getAll(){
 
        return cargoRepository.findAll();
+
+    }
+
+    @PutMapping("/{id}")
+    public  Cargo update(@PathVariable UUID id, @RequestBody Cargo cargo){
+
+    Optional<Cargo> cargo1 =  cargoRepository.findById(id);
+    if(!cargo1.isPresent()){
+        throw new RuntimeException("Cargo inexistente");
+
+    }
+    Cargo updatedCargo = new Cargo();
+    updatedCargo.setCargo_id(id);
+    updatedCargo.setNome(cargo.getNome());
+    return cargoRepository.save(updatedCargo);
+
 
     }
 
