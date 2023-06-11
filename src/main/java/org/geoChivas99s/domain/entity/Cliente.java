@@ -3,6 +3,7 @@ package org.geoChivas99s.domain.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 @Data
 @AllArgsConstructor
@@ -16,7 +17,6 @@ public class Cliente {
     private Integer id;
     @Column(name="nome", length = 100)
     private String nome;
-
     @Column(name = "cpf" , length = 11)
     private String cpf;
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)

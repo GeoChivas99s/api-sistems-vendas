@@ -51,7 +51,7 @@ public class PedidoServiceImpl implements PedidosService {
       return  items.stream().map(itemPedidoDTO -> {
                    Produto produto = products.
                            findById(itemPedidoDTO.getProduto())
-                           .orElseThrow(()-> new BussinessRulesException("Código do produto inválido!!"+itemPedidoDTO.getProduto()));
+                           .orElseThrow(()-> new BussinessRulesException("Código do produto inválido!!"  +itemPedidoDTO.getProduto()));
 
                   ItemPedido itemPedido = new ItemPedido();
                   itemPedido.setPedido(pedido);
